@@ -1,7 +1,4 @@
 ﻿using Entities.Abstract;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Entities.Concrete
 {
@@ -11,6 +8,7 @@ namespace Entities.Concrete
         public int BrandId { get; set; }
         public int ColorId { get; set; }
         public short ModelYear { get; set; }
+        public string Name { get; set; }
         public decimal DailyPrice { get; set; }
         public string Description { get; set; }
     }
