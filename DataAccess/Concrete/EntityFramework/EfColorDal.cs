@@ -1,14 +1,15 @@
-﻿using DataAccess.Abstract;
+﻿using Core.DataAccess.EntityFramework;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfColorDal : EfEntityDal<Color>, IColorDal
+    public class EfColorDal : EfEntityRepositoryBase<Color, ReCapContext>, IColorDal
     {
         private readonly ReCapContext _reCapContext;
 
-        public EfColorDal(ReCapContext reCapContext) : base(reCapContext)
+        public EfColorDal(ReCapContext reCapContext)
         {
             _reCapContext = reCapContext;
         }
