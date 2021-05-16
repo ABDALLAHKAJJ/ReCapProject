@@ -5,15 +5,13 @@ using System;
 
 namespace ConsoleUI
 {
-    internal class Program
+    internal static class Program
     {
         private static void Main(string[] args)
         {
             CarManager carManager = new CarManager(new EfCarDal(new ReCapContext()));
 
-            //AddCars(carManager);
-
-            foreach (var car in carManager.GetAll())
+            foreach (var car in carManager.GetAll().Data)
             {
                 Console.WriteLine(car.Name);
             }

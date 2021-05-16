@@ -7,7 +7,7 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-6E0MHSD\APO; Database= ReCap; Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=DG-ANUROGLU\APO; Database= ReCap; Trusted_Connection=True;");
         }
 
         public DbSet<Brand> Brands { get; set; }

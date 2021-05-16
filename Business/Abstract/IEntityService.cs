@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Core.Utilities.Results.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -8,14 +9,14 @@ namespace Business.Abstract
     public interface IEntityService<TEntity>
         where TEntity : class, IEntity, new()
     {
-        List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null);
+        IResult Add(TEntity entity);
 
-        TEntity Get(Expression<Func<TEntity, bool>> filter);
+        IResult Delete(TEntity entity);
 
-        void Add(TEntity entity);
+        IDataResult<TEntity> Get(Expression<Func<TEntity, bool>> filter);
 
-        void Update(TEntity entity);
+        IDataResult<List<TEntity>> GetAll(Expression<Func<TEntity, bool>> filter = null);
 
-        void Delete(TEntity entity);
+        IResult Update(TEntity entity);
     }
 }

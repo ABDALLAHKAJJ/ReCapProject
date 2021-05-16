@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System.Collections.Generic;
@@ -14,14 +16,14 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public List<Car> GetCarsByBrandId(int brandId)
+        public DataResult<List<Car>> GetCarsByBrandId(int brandId)
         {
-            return _carDal.GetCarsByBrandId(brandId);
+            return new SuccessDataResult<List<Car>>(_carDal.GetCarsByBrandId(brandId), Messages.Success);
         }
 
-        public List<Car> GetCarsByColorId(int colorId)
+        public DataResult<List<Car>> GetCarsByColorId(int colorId)
         {
-            return _carDal.GetCarsByColorId(colorId);
+            return new SuccessDataResult<List<Car>>(_carDal.GetCarsByColorId(colorId), Messages.Success);
         }
     }
 }

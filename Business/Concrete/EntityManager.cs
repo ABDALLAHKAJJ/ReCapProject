@@ -1,6 +1,9 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.DataAccess;
 using Core.Entities;
+using Core.Utilities.Results.Abstract;
+using Core.Utilities.Results.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -16,29 +19,32 @@ namespace Business.Concrete
             _entityRepository = entityRepository;
         }
 
-        public void Add(TEntity entity)
+        public IResult Add(TEntity entity)
         {
             _entityRepository.Add(entity);
+            return new SuccessResult(Messages.ItemAdded);
         }
 
-        public void Delete(TEntity entity)
+        public IResult Delete(TEntity entity)
         {
             _entityRepository.Delete(entity);
+            return new SuccessResult(Messages.ItemDeleted);
         }
 
-        public TEntity Get(Expression<Func<TEntity, bool>> filter)
+        public IDataResult<TEntity> Get(Expression<Func<TEntity, bool>> filter)
         {
-            return _entityRepository.Get(filter);
+            return new SuccessDataResult<TEntity>(_entityRepository.Get(filter), Messages.Success);
         }
 
-        public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
+        public IDataResult<List<TEntity>> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {
-            return _entityRepository.GetAll(filter);
+            return new SuccessDataResult<List<TEntity>>(_entityRepository.GetAll(filter), Messages.Success);
         }
 
-        public void Update(TEntity entity)
+        public IResult Update(TEntity entity)
         {
             _entityRepository.Update(entity);
+            return new SuccessResult(Messages.ItemUpdated);
         }
     }
 }
