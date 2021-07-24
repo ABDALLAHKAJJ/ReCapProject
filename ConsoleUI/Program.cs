@@ -1,4 +1,5 @@
-﻿using Business.Concrete;
+﻿using Business.Abstract;
+using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using System;
@@ -9,11 +10,25 @@ namespace ConsoleUI
     {
         private static void Main(string[] args)
         {
-            CarManager carManager = new CarManager(new EfCarDal(new ReCapContext()));
+            //CarManager carManager = new CarManager(new EfCarDal(new ReCapContext()));
 
-            foreach (var car in carManager.GetAll().Data)
+            //foreach (var car in carManager.GetAll().Data)
+            //{
+            //    Console.WriteLine(car.Name);
+            //}
+            //AddUsers(new UserManager(new EfUserDal()));
+
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+
+            for (int i = 1; i <= 5; i++)
             {
-                Console.WriteLine(car.Name);
+                Customer customer = new Customer
+                {
+                    Id = i,
+                    UserId = i,
+                    CompanyName = "Customer" + i
+                };
+                customerManager.Add(customer);
             }
         }
 
@@ -73,6 +88,69 @@ namespace ConsoleUI
             carManager.Add(car3);
             carManager.Add(car4);
             carManager.Add(car5);
+        }
+
+        private static void AddUsers(IUserService userService)
+        {
+            var Users1 = new User
+            {
+                Id = 1,
+                FirstName = "firstname1",
+                LastName = "lastname1",
+                Email = "email1",
+                Password = "password1"
+            };
+            var Users2 = new User
+            {
+                Id = 2,
+
+                FirstName = "firstname2",
+                LastName = "lastname2",
+                Email = "email2",
+                Password = "password2"
+            };
+            var Users3 = new User
+            {
+                Id = 3,
+
+                FirstName = "firstname3",
+                LastName = "lastname3",
+                Email = "email3",
+                Password = "password3"
+            };
+            var Users4 = new User
+            {
+                Id = 4,
+
+                FirstName = "firstname4",
+                LastName = "lastname4",
+                Email = "email4",
+                Password = "password4"
+            };
+            var Users5 = new User
+            {
+                Id = 5,
+
+                FirstName = "firstname5",
+                LastName = "lastname5",
+                Email = "email5",
+                Password = "password5"
+            };
+            var Users6 = new User
+            {
+                Id = 6,
+
+                FirstName = "firstname6",
+                LastName = "lastname6",
+                Email = "email6",
+                Password = "password6"
+            };
+            userService.Add(Users1);
+            userService.Add(Users2);
+            userService.Add(Users3);
+            userService.Add(Users4);
+            userService.Add(Users5);
+            userService.Add(Users6);
         }
     }
 }

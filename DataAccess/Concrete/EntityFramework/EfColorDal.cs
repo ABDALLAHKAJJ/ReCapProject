@@ -14,7 +14,7 @@ namespace DataAccess.Concrete.EntityFramework
             _reCapContext = reCapContext;
         }
 
-        private void Add(Car car)
+        public void Add(Car car)
         {
             if (car.Name.Length >= 2 || car.DailyPrice > 0)
             {
